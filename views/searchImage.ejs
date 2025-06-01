@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- embedded javascript template (allows to embedd JS within HTML) -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Images</title>
+    <link rel="stylesheet" href="/searchImage.css" />
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  </head>
+  <body>
+    <div class="heading">
+      <div class="userInfo">Welcome, <%=username%></div>
+        <h1>SEARCH IMAGE HERE</h1>
+        <div class="logout-btn">
+          <form action="/auth/logout" method="post">
+            <button id="logoutBtn" type="submit">Logout</button>
+          </form>
+        </div>
+      <div class="search-input">
+        <form action="/unsplash/search" method="post">
+          <input
+            type="text"
+            placeholder="What you are looking for...."
+            name="search"
+          />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="result-img">
+      <% if (photos) { %> 
+        <% photos.forEach((photo) => { %>
+      <div>
+        <a href="<%= photo.links.download %>">
+          <img
+          src="<%= photo.urls.regular %>"
+          alt="<%= photo.alt_description %>"
+          width="300"
+        />
+        </a>
+      </div>
+      <% }) %> <% } %>
+    </div>
+  </body>
+</html>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    if(params.get("inputNull")){
+        Toastify({
+        text: "Please type something",
+        duration: 2000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: false, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #020024, #090979,#00D4FF)",
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast();
+    }
+</script>
