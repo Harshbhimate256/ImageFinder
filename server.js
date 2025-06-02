@@ -10,9 +10,11 @@ import unsplashRoutes from './Routes/unsplash.Routes.js'
 import fsRoutes from './Routes/fs.routes.js'
 const app = express();
 
-// Fix for __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+//------------- Fix for __dirname in ES modules ---------------
+
+//import.meta.url -> gives file url of the current module
+const __filename = fileURLToPath(import.meta.url);//convert file url to nrml path
+const __dirname = dirname(__filename);//extract dir path from file path
 
 
 
@@ -25,7 +27,7 @@ app.set("view engine", "ejs");
 
 dotenv.config()
 app.use(cookieParser())
-app.use(express.json())
+app.use(express.json()) // parses incoming JSON payloads from body of PUT/POST request
 
 app.use(express.static(path.join(__dirname, "stylesheets")));
 
@@ -40,6 +42,13 @@ app.use("/fs", fsRoutes);
 app.use(ErrorHandler)
 
 const PORT = process.env.PORT || 3010
+/*
+const server = http.createServer(app);
+server.listen(port,()=>{
+    connectMongoDB()
+    console.log(`server is running on port ${port}`)
+})
+*/
 
 app.listen(PORT,()=>{
     connectDB()

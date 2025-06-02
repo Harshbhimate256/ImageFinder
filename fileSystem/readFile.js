@@ -1,5 +1,5 @@
 import { readFile } from "fs/promises";
-export const fileRead = async (req,res) => {
+export const fileRead = async (req,res,next) => {
   try {
     const data = await readFile("imageData.json", "utf8");
     // console.log(typeof data)
@@ -8,6 +8,6 @@ export const fileRead = async (req,res) => {
         data:newData
     })
   } catch (error) {
-    console.log("error while reading the file", error.message);
+    next(error)
   }
 };

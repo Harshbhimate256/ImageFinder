@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 
-export const deleteFile = (req,res) =>{
+export const deleteFile = (req,res,error) =>{
     try{
         fs.unlink('imageData.json')
 
@@ -10,6 +10,6 @@ export const deleteFile = (req,res) =>{
         
         console.log("file deleted")
     }catch(error){
-        console.log("error while deleting the file", error.message)
+        next(error)
     }
 }

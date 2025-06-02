@@ -5,8 +5,9 @@ import { createLogger, format, transports } from "winston";
 
 
 // Fix for __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+//import.meta.url -> gives file url of the current module
+const __filename = fileURLToPath(import.meta.url); //convert file url to nrml path
+const __dirname = dirname(__filename); //extract dir path from file path
 
 const logFilePath = path.join(__dirname, '..','Logs','user.log');
 
@@ -21,6 +22,7 @@ const logger = createLogger({
         })
     ),
     transports:[
+        new transports.Console(),
         new transports.File({filename: logFilePath})
     ]
 });
