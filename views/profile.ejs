@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="/profile.css" />
+  </head>
+  <body>
+    <div class="profile-container">
+      <div class="profile-img-container">
+        <div class="profile-img">
+          <img
+            src="/uploads/<%=profileImage%>"
+            alt="not supported"
+            height="100%"
+            width="100%"
+          />
+        </div>
+        <h1 class="fullname"><%=name%></h1>
+      </div>
+      <div>
+        <h1>Update profile picture</h1>
+        <form
+          action="/profile/upload"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input type="file" name="profile" id="profile" />
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

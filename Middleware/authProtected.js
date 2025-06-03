@@ -15,7 +15,6 @@ const protectedRoute = async (req, res, next) => {
     }
 
     const user = await userModel.findById(decode.userId).select("-password");
-    console.log(user);
 
     if (!user) {
       throw new CustomError("User not found", 404);

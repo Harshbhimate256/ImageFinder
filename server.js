@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 import unsplashRoutes from './Routes/unsplash.Routes.js'
 import fsRoutes from './Routes/fs.routes.js'
+import profileRoute from './Routes/profile.routes.js'
 const app = express();
 
 //------------- Fix for __dirname in ES modules ---------------
@@ -29,6 +30,8 @@ dotenv.config()
 app.use(cookieParser())
 app.use(express.json()) // parses incoming JSON payloads from body of PUT/POST request
 
+app.use("/uploads",express.static('uploads')) //this will tell browser to search from uploads folder and no need to write 'upload' in the url or path
+
 app.use(express.static(path.join(__dirname, "stylesheets")));
 
 app.get("/",(req,res)=>{
@@ -38,6 +41,7 @@ app.get("/",(req,res)=>{
 app.use("/auth",authRoute);
 app.use("/unsplash", unsplashRoutes);
 app.use("/fs", fsRoutes);
+app.use("/profile",profileRoute)
 
 app.use(ErrorHandler)
 

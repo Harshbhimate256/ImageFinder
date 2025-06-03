@@ -1,0 +1,33 @@
+body{
+    background-image:url(login-page-BG.jpg) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+}
+
+.profile-container{
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid white;
+}
+.profile-img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33.33%;
+
+}
+.profile-img{
+    height: 28%;
+    width: 40%;
+    border-radius: 100%;
+    overflow: hidden;
+}
+img{
+    object-fit: cover;
+}
+.fullname{
+    color: white;
+    font-size: 100px;
+}
